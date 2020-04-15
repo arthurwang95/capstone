@@ -1,0 +1,50 @@
+NextWord
+========================================================
+font-family: 'Helvetica'
+
+## A Shiny App for Data Science Capstone
+
+Arthur, April 15, 2020
+
+<small>*This is my course project for the Coursera class 'Data Science Capstone' offered by Johns Hopkins University and its industry partner Swiftkey. <br> <br> It is only for the purpose of finishing the assignment.<br> <br> I appreciate many useful, old discussions in the course forum.*</small>  
+
+General Function
+========================================================
+* We developd an English-language application that is able to predict the next word based on previous words a user has typed in. 
+
+* We established a N-grams probablistic language model using three collections of English documents fetched from some blogs, news and twitters. 
+
+* After you typed in any phrase (*including symbols*), the app will return the most likely word coming next and a table with all top 10 ranked next words and their scores.
+
+* The app is available on [Shinyapps.io by RStudio](http://arthurwang95.shinyapps.io/NextWord/).
+
+* Original code is also available on [GitHub](https://github.com/arthurwang95/capstone).
+
+
+Text Transformation
+========================================================
+* Remove documents that contain any dirty words defined [here]( https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/blob/master/en).
+* Convert contractions to basic forms (e.g. "hasn't" to "has not").
+* Convert all characters to lower cases using "tolower" function.
+* Split hyphens (e.g. "self-aware" to "self","-","aware").
+* Remove all the tokens that consist only of numbers.
+* Remove punctation, symbols, and URLs.
+
+**We keep the stop words (such as "the", "a", "an", "in") that matter in real language setting.** 
+
+N-grams Probablistic Language Model
+========================================================
+
+N-grams approximation uses the previou N-1 words to predict the next (Nth) word.
+<small>$P(w_i|w_1w_2~...w_{i-1}) \approx P(w_i|w_{i-n+1}w_{i-n+2}~...w_{i-1}) = \frac{Count(w_{i-n+1}w_{i-n+2}~...w_{i-1}w_i)}{Count(w_{i-n+1}w_{i-n+2}~...w_{i-1})}$</small>
+
+We implemented "Stupid Backoff" smoothing [(Brants et. 2007)](https://www.aclweb.org/anthology/D07-1090.pdf).
+![Equation 1: A (k+1)grams "Stupid Backoff" model](Picture1.png)
+
+
+Demo: A simple example and Thx!
+========================================================
+![](Picture2.png)
+
+
+
